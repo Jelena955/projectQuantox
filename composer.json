@@ -1,0 +1,35 @@
+{
+ 	"name": "pecee/simple-router-demo",
+ 	"description": "Simple router demo project",
+ 	"keywords": [
+		"simple-router",
+		"php",
+		"php-simple-router"
+	],
+	"license": "MIT",
+	"type": "project",
+	"require": {
+		"php": ">=7.4",
+		"pecee/simple-router": "^4.0",
+ 	 	"nesbot/carbon": "^2.53",
+      "ext-pdo": "*",
+		"ext-json": "*",
+ 	 	"phpmailer/phpmailer": "^6.5"
+
+    },
+	"config": {
+		"preferred-install": "dist"
+	},
+    "autoload": {
+      "psr-4": {
+        "Jelena\\": "app/"
+      },
+		"files": [
+			"app/helpers.php"
+
+
+		]
+    }
+
+
+}

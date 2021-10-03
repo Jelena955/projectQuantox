@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>News</title>
+</head>
+<body>
+
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+        <input type="search" id="search" class="mt-2" placeholder="search">
+        <button id="buttonsearch">Search</button>
+    </li>
+    <li class="nav-item">
+        <div class="dropdown">
+            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Category
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class='dropdown-item cat' href='#' id='all'>All</a></li>
+                <?php
+                foreach ($categorys as $category){
+                    //var_dump($podatak);
+
+                    echo "<li><a class='dropdown-item cat' href='#' id='$category->idcategory'>$category->name</a></li>";
+                }?>
+
+
+
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="/login" class="nav-link">Admin login</a>
+    </li>
+</ul>
+
+<div class="row mt-5" id="vesti">
+    <?php
+    $token=csrf_token();
+  /* echo "  <form action='/new' method='post'>
+                <input type='hidden' name='csrf_token' value=".csrf_token()."/>
+                <button type='submit'  class='btn btn-primary' id='$new->idnews' name='new'>More</button>
+                </form>";*/
+    foreach ($news as $new){
+
+        echo"<div class='col-sm-6' >
+        <div class='card '>
+            <div class='card-body '>
+                <h5 class='card-title '>$new->titlee</h5>
+                <form action='/new' method='get'>
+                
+                
+                <button type='submit'  class='btn btn-primary' value='$new->idnews' name='new'>More</button>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    
+    ";
+
+
+    }
+    ?>
+
+
+</div>
+<div id="subscribe"></div>
+
+  <form id ='forma' action="/insertsubscribes" method="post">
+    <input type="hidden" name="csrf_token" value=<?=csrf_token()?> id="token"/></form>
+</body>
+<script src="/js/jquery-3.6.0.min.js" type="text/javascript">
+</script>
+<script src="js/main.js" type="text/javascript">
+</script>
+</html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+
+
+
+

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>News</title>
+</head>
+<body>
+
+
+<div>
+<a href="logout">Logout</a>
+
+<div>
+<h1>List and update news</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">New id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th>Update</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+
+
+<?php
+$br=1;
+
+foreach ($news as $new){
+    $id=$new->idcategory;
+
+echo"
+
+   <form method='get' action='/update'>
+    <tr>
+    
+      <th scope='row'>$br</th>
+      <td>$new->idnews</td>
+      <td><input  name='title' type='text' value='$new->titlee'></td>
+      <td><textarea name='description'>$new->description</textarea></td>
+      <td><select name='cat' value='$new->idcategory'>";
+foreach ($cats as $cat){
+    $idcat=$cat->idcategory;
+    if($id==$idcat){
+
+
+    echo "<option selected='selected' value='$cat->idcategory'>$cat->idcategory </option>";}
+     if ($id!=$idcat){
+       " <option  value='$cat->idcategory'>$cat->idcategory </option>";
+
+    }
+
+}
+echo " </select> </td>
+      <td><button type='submit' value='$new->idnews' name='newsid'>Update</button></td>
+    </tr>
+    </form>
+  
+
+
+
+
+
+";
+
+$br++;
+
+}?>
+
+
+        </tbody>
+</table> </div>
+
+    <div>
+        <h1>Insert news</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th>Insert</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <form method='get' action='/insertnews'>
+                <tr>
+                    <td><input type='text' name="title" value='Title'></td>
+                    <td><textarea name="description">Description</textarea></td>
+                    <td><select name="cat">
+                            <?php
+                            foreach ($cats as $cat){
+                                echo "<option value='$cat->idcategory'>$cat->name</option>";
+                            }
+                            ?>
+                        </select></td>
+                    <td><button type='submit' value='' name='insert'>Insert</button></td>
+                </tr>
+            </form>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
